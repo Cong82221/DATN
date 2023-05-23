@@ -185,9 +185,9 @@ def run(
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
         if len(det):
-             GPIO.output(R_PIN, GPIO.HIGH)
+                GPIO.output(R_PIN, GPIO.HIGH)
         else
-            GPIO.output(R_PIN, GPIO.LOW)
+                GPIO.output(R_PIN, GPIO.LOW)
 
     # Print results
     t = tuple(x.t / seen * 1E3 for x in dt)  # speeds per image
