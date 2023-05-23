@@ -5,6 +5,10 @@ import sys
 from pathlib import Path
 #import pygame
 import torch
+import Rpi.GPIO as GPIO
+R_PIN = 26
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(R_PIN,GPIO.OUT)
 
 
 FILE = Path(__file__).resolve()
@@ -180,6 +184,10 @@ def run(
 
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
+        if len(det):
+             GPIO.output(R_PIN, GPIO.HIGH)
+        else
+            GPIO.output(R_PIN, GPIO.LOW)
 
     # Print results
     t = tuple(x.t / seen * 1E3 for x in dt)  # speeds per image
